@@ -1,0 +1,154 @@
+Qualtrics.SurveyEngine.addOnload(function()
+{
+	console.log('v4.7');
+    jQuery('NextButton').hide();
+	
+	var domain = "https://catsurv.com";
+    	var url = domain + "/ocpu/library/catSurv/R/processAJAX";
+
+	
+	var last_item = +Qualtrics.SurveyEngine.getEmbeddedData('last_item');
+	var last_answer = +Qualtrics.SurveyEngine.getEmbeddedData('last_answer');
+	// console.log('LAST ITEM ON LOAD = ' + last_item);
+	// console.log('LAST ANSWER ON LOAD = ' + last_answer);
+	
+	var isFirst = false;
+	if (last_item == -1) {
+		isFirst = true;
+	}
+	
+	if ((+last_item) != -1) {
+		// console.log('SETTING CATOBJ LAST ITEM = ' + last_item);
+		var newCat = JSON.parse(JSON.parse('"' + Qualtrics.SurveyEngine.getEmbeddedData("catObj").replace(/"/g, '\\"') + '"'));
+		// console.log('NEW CAT TYPE');
+		// console.log(typeof(newCat));
+		// console.log(newCat);
+		newCat['answers'][last_item-1] = last_answer;
+		// console.log('OLD CAT' + Qualtrics.SurveyEngine.getEmbeddedData("catObj"));
+		Qualtrics.SurveyEngine.setEmbeddedData("catObj", JSON.stringify(newCat));
+		// console.log('NEW CAT' + Qualtrics.SurveyEngine.getEmbeddedData("catObj"));
+	}
+	
+	var payload = "\"" + Qualtrics.SurveyEngine.getEmbeddedData("catObj").replace(/"/g, '\\"') + "\"";
+	// console.log('PAYLOAD');
+	// console.log(payload);
+
+	jQuery.ajax({
+		type: "POST",
+		url: url,
+		
+		data: {
+			"catObj": payload,
+			"item": +Qualtrics.SurveyEngine.getEmbeddedData('next_item'),
+		},
+		
+		async: !isFirst,
+		crossDomain: true,
+		success: function (response) {
+			responseTxt = response.split("\n")[1] + "/json";
+			jQuery.ajax({
+				type: "GET",
+				url: "https://catsurv.com" + responseTxt,
+				async: false,
+				crossDomain: true,
+				success: function (r) {
+					// console.log(r);
+					if ('firstThing' in r) {
+						Qualtrics.SurveyEngine.setEmbeddedData('next_item', r.firstThing[0]);
+					}
+						
+					if ('lastItem' in r) {
+						Qualtrics.SurveyEngine.setEmbeddedData('final_item', 1);
+					}
+						
+					var pots = {
+						'nexts': r.next_item,
+						'resps': r.response_option
+					}
+					setPotentials(pots);
+					// console.log('LOGGING POTS');
+					// console.log(getPotentials());
+					jQuery('NextButton').show();
+				}
+			});
+		}
+	});
+
+});
+
+Qualtrics.SurveyEngine.addOnReady(function()
+{	
+	if (+Qualtrics.SurveyEngine.getEmbeddedData("next_item") == -1) {
+		return;
+	}
+	
+	var next_item_info = qtext[+Qualtrics.SurveyEngine.getEmbeddedData("next_item")];
+	
+	var next_item_text = next_item_info['text'];
+	var questionText = jQuery('.QuestionText')[0];
+	questionText.innerHTML = next_item_text;
+	
+	var next_item_resp = next_item_info['responses'];
+	var numResps = Object.keys(next_item_resp).length;
+	
+	var choices = jQuery('.ChoiceStructure').children();
+	for (var i = numResps; i < choices.length; i++) {
+		choices[i].remove();
+	}
+	choices = jQuery('.ChoiceStructure').children();
+	
+	var spans = jQuery('.ChoiceStructure > li > span > label > span');
+	for (var i = 0; i < spans.length; i++) {
+		spans[i].innerHTML = next_item_resp[i+1];
+	}
+});
+
+Qualtrics.SurveyEngine.addOnUnload(function()
+{
+	var last_item = +Qualtrics.SurveyEngine.getEmbeddedData('last_item');
+	var last_answer = +Qualtrics.SurveyEngine.getEmbeddedData('last_answer');
+
+	if ((+last_item) != -1) {
+		var newCat = JSON.parse(JSON.parse('"' + Qualtrics.SurveyEngine.getEmbeddedData("catObj").replace(/"/g, '\\"') + '"'));
+		newCat['answers'][last_item-1] = last_answer;
+		Qualtrics.SurveyEngine.setEmbeddedData("catObj", JSON.stringify(newCat));
+	}
+	
+	if (+Qualtrics.SurveyEngine.getEmbeddedData("next_item") == -1) {
+		return;
+	}
+	var selectedAnswer =  parseInt(this.getSelectedChoices()[0]);
+	// console.log(selectedAnswer);
+	if (Number.isNaN(selectedAnswer)) {
+		selectedAnswer = -1;
+	}
+	Qualtrics.SurveyEngine.setEmbeddedData("last_item", +Qualtrics.SurveyEngine.getEmbeddedData("next_item"));
+	Qualtrics.SurveyEngine.setEmbeddedData("last_answer", selectedAnswer);
+	
+	var last_answer_idx = +Qualtrics.SurveyEngine.getEmbeddedData("last_answer");
+	if (selectedAnswer == -1) {
+		last_answer_idx = 0;
+	}
+	Qualtrics.SurveyEngine.setEmbeddedData("next_item", getPotentials().nexts[last_answer_idx]);
+	
+	var final_item = +Qualtrics.SurveyEngine.getEmbeddedData("final_item");
+	if (final_item == 1) {
+		var final_last_item = Qualtrics.SurveyEngine.getEmbeddedData("last_item");
+		var final_last_answer = Qualtrics.SurveyEngine.getEmbeddedData("last_answer");
+		var newCat = JSON.parse(JSON.parse('"' + Qualtrics.SurveyEngine.getEmbeddedData("catObj").replace(/"/g, '\\"') + '"'));
+		newCat['answers'][final_last_item-1] = final_last_answer;
+		Qualtrics.SurveyEngine.setEmbeddedData("catObj", JSON.stringify(newCat));
+	}
+	
+	// console.log('NEXT FROM NEXT ON UNLOAD = ' + Qualtrics.SurveyEngine.getEmbeddedData("next_item"));
+	// console.log('NEXT FROM POTS ON UNLOAD = ' + getPotentials().nexts[last_answer_idx]);
+	// console.log('LAST ITEM ON UNLOAD = ' + Qualtrics.SurveyEngine.getEmbeddedData("last_item"));
+	
+	console.log('FINAL ITEM? ' + final_item);
+	console
+	console.log(
+		JSON.parse(
+			JSON.parse('"' + Qualtrics.SurveyEngine.getEmbeddedData("catObj").replace(/"/g, '\\"') + '"')
+		)
+	);
+});
