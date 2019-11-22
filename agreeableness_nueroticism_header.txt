@@ -1,0 +1,58 @@
+<script>
+
+var qtextAGREE = {
+1: { "text" : "I have a good word for everyone.", "responses" : { 1 : "Very inaccurate", 2 : "Moderately inaccurate", 3 : "Neither inaccurate nor accurate", 4 : "Moderately accurate", 5 : "Very accurate" } },
+2: { "text" : "I believe that others have good intentions.", "responses" : { 1 : "Very inaccurate", 2 : "Moderately inaccurate", 3 : "Neither inaccurate nor accurate", 4 : "Moderately accurate", 5 : "Very accurate" } },
+3: { "text" : "I respect others.", "responses" : { 1 : "Very inaccurate", 2 : "Moderately inaccurate", 3 : "Neither inaccurate nor accurate", 4 : "Moderately accurate", 5 : "Very accurate" } },
+4: { "text" : "I accept people as they are.", "responses" : { 1 : "Very inaccurate", 2 : "Moderately inaccurate", 3 : "Neither inaccurate nor accurate", 4 : "Moderately accurate", 5 : "Very accurate" } },
+5: { "text" : "I make people feel at ease.", "responses" : { 1 : "Very inaccurate", 2 : "Moderately inaccurate", 3 : "Neither inaccurate nor accurate", 4 : "Moderately accurate", 5 : "Very accurate" } },
+6: { "text" : "I am concerned about others.", "responses" : { 1 : "Very inaccurate", 2 : "Moderately inaccurate", 3 : "Neither inaccurate nor accurate", 4 : "Moderately accurate", 5 : "Very accurate" } },
+7: { "text" : "I trust what people say.", "responses" : { 1 : "Very inaccurate", 2 : "Moderately inaccurate", 3 : "Neither inaccurate nor accurate", 4 : "Moderately accurate", 5 : "Very accurate" } },
+8: { "text" : "I sympathize with others' feelings.", "responses" : { 1 : "Very inaccurate", 2 : "Moderately inaccurate", 3 : "Neither inaccurate nor accurate", 4 : "Moderately accurate", 5 : "Very accurate" } },
+9: { "text" : "I am easy to satisfy.", "responses" : { 1 : "Very inaccurate", 2 : "Moderately inaccurate", 3 : "Neither inaccurate nor accurate", 4 : "Moderately accurate", 5 : "Very accurate" } },
+10: { "text" : "I treat all people equally.", "responses" : { 1 : "Very inaccurate", 2 : "Moderately inaccurate", 3 : "Neither inaccurate nor accurate", 4 : "Moderately accurate", 5 : "Very accurate" } },
+11: { "text" : "I have a sharp tongue.", "responses" : { 1 : "Very inaccurate", 2 : "Moderately inaccurate", 3 : "Neither inaccurate nor accurate", 4 : "Moderately accurate", 5 : "Very accurate" } },
+12: { "text" : "I cut others to pieces.", "responses" : { 1 : "Very inaccurate", 2 : "Moderately inaccurate", 3 : "Neither inaccurate nor accurate", 4 : "Moderately accurate", 5 : "Very accurate" } },
+13: { "text" : "I suspect hidden motives in others.", "responses" : { 1 : "Very inaccurate", 2 : "Moderately inaccurate", 3 : "Neither inaccurate nor accurate", 4 : "Moderately accurate", 5 : "Very accurate" } },
+14: { "text" : "I get back at others.", "responses" : { 1 : "Very inaccurate", 2 : "Moderately inaccurate", 3 : "Neither inaccurate nor accurate", 4 : "Moderately accurate", 5 : "Very accurate" } },
+15: { "text" : "I insult people.", "responses" : { 1 : "Very inaccurate", 2 : "Moderately inaccurate", 3 : "Neither inaccurate nor accurate", 4 : "Moderately accurate", 5 : "Very accurate" } },
+16: { "text" : "I believe that I am better than others.", "responses" : { 1 : "Very inaccurate", 2 : "Moderately inaccurate", 3 : "Neither inaccurate nor accurate", 4 : "Moderately accurate", 5 : "Very accurate" } },
+17: { "text" : "I contradict others.", "responses" : { 1 : "Very inaccurate", 2 : "Moderately inaccurate", 3 : "Neither inaccurate nor accurate", 4 : "Moderately accurate", 5 : "Very accurate" } },
+18: { "text" : "I make demands on others.", "responses" : { 1 : "Very inaccurate", 2 : "Moderately inaccurate", 3 : "Neither inaccurate nor accurate", 4 : "Moderately accurate", 5 : "Very accurate" } },
+19: { "text" : "I hold a grudge.", "responses" : { 1 : "Very inaccurate", 2 : "Moderately inaccurate", 3 : "Neither inaccurate nor accurate", 4 : "Moderately accurate", 5 : "Very accurate" } },
+20: { "text" : "I am out for my own personal gain.", "responses" : { 1 : "Very inaccurate", 2 : "Moderately inaccurate", 3 : "Neither inaccurate nor accurate", 4 : "Moderately accurate", 5 : "Very accurate" } }
+};
+
+
+var qtextNEURO = {
+1: { "text" : "I often feel blue.", "responses" : { 1 : "Very inaccurate", 2 : "Moderately inaccurate", 3 : "Neither inaccurate nor accurate", 4 : "Moderately accurate", 5 : "Very accurate" } },
+2: { "text" : "I dislike myself.", "responses" : { 1 : "Very inaccurate", 2 : "Moderately inaccurate", 3 : "Neither inaccurate nor accurate", 4 : "Moderately accurate", 5 : "Very accurate" } },
+3: { "text" : "I am often down in the dumps.", "responses" : { 1 : "Very inaccurate", 2 : "Moderately inaccurate", 3 : "Neither inaccurate nor accurate", 4 : "Moderately accurate", 5 : "Very accurate" } },
+4: { "text" : "I have frequent mood swings.", "responses" : { 1 : "Very inaccurate", 2 : "Moderately inaccurate", 3 : "Neither inaccurate nor accurate", 4 : "Moderately accurate", 5 : "Very accurate" } },
+5: { "text" : "I panic easily.", "responses" : { 1 : "Very inaccurate", 2 : "Moderately inaccurate", 3 : "Neither inaccurate nor accurate", 4 : "Moderately accurate", 5 : "Very accurate" } },
+6: { "text" : "I am filled with doubts about things.", "responses" : { 1 : "Very inaccurate", 2 : "Moderately inaccurate", 3 : "Neither inaccurate nor accurate", 4 : "Moderately accurate", 5 : "Very accurate" } },
+7: { "text" : "I feel threatened easily.", "responses" : { 1 : "Very inaccurate", 2 : "Moderately inaccurate", 3 : "Neither inaccurate nor accurate", 4 : "Moderately accurate", 5 : "Very accurate" } },
+8: { "text" : "I get stressed out easily.", "responses" : { 1 : "Very inaccurate", 2 : "Moderately inaccurate", 3 : "Neither inaccurate nor accurate", 4 : "Moderately accurate", 5 : "Very accurate" } },
+9: { "text" : "I fear for the worst.", "responses" : { 1 : "Very inaccurate", 2 : "Moderately inaccurate", 3 : "Neither inaccurate nor accurate", 4 : "Moderately accurate", 5 : "Very accurate" } },
+10: { "text" : "I worry about things.", "responses" : { 1 : "Very inaccurate", 2 : "Moderately inaccurate", 3 : "Neither inaccurate nor accurate", 4 : "Moderately accurate", 5 : "Very accurate" } },
+11: { "text" : "I seldom feel blue.", "responses" : { 1 : "Very inaccurate", 2 : "Moderately inaccurate", 3 : "Neither inaccurate nor accurate", 4 : "Moderately accurate", 5 : "Very accurate" } },
+12: { "text" : "I feel comfortable with myself.", "responses" : { 1 : "Very inaccurate", 2 : "Moderately inaccurate", 3 : "Neither inaccurate nor accurate", 4 : "Moderately accurate", 5 : "Very accurate" } },
+13: { "text" : "I rarely get irritated.", "responses" : { 1 : "Very inaccurate", 2 : "Moderately inaccurate", 3 : "Neither inaccurate nor accurate", 4 : "Moderately accurate", 5 : "Very accurate" } },
+14: { "text" : "I am not easily bothered by things.", "responses" : { 1 : "Very inaccurate", 2 : "Moderately inaccurate", 3 : "Neither inaccurate nor accurate", 4 : "Moderately accurate", 5 : "Very accurate" } },
+15: { "text" : "I am very pleased with myself.", "responses" : { 1 : "Very inaccurate", 2 : "Moderately inaccurate", 3 : "Neither inaccurate nor accurate", 4 : "Moderately accurate", 5 : "Very accurate" } },
+16: { "text" : "I am relaxed most of the time.", "responses" : { 1 : "Very inaccurate", 2 : "Moderately inaccurate", 3 : "Neither inaccurate nor accurate", 4 : "Moderately accurate", 5 : "Very accurate" } },
+17: { "text" : "I seldom get mad.", "responses" : { 1 : "Very inaccurate", 2 : "Moderately inaccurate", 3 : "Neither inaccurate nor accurate", 4 : "Moderately accurate", 5 : "Very accurate" } },
+18: { "text" : "I am not easily frustrated.", "responses" : { 1 : "Very inaccurate", 2 : "Moderately inaccurate", 3 : "Neither inaccurate nor accurate", 4 : "Moderately accurate", 5 : "Very accurate" } },
+19: { "text" : "I remain calm under pressure.", "responses" : { 1 : "Very inaccurate", 2 : "Moderately inaccurate", 3 : "Neither inaccurate nor accurate", 4 : "Moderately accurate", 5 : "Very accurate" } },
+20: { "text" : "I rarely lose my composure.", "responses" : { 1 : "Very inaccurate", 2 : "Moderately inaccurate", 3 : "Neither inaccurate nor accurate", 4 : "Moderately accurate", 5 : "Very accurate" } }
+};
+
+
+var potentials = null;
+function setPotentials(pots) {
+potentials = pots
+}
+function getPotentials() {
+return potentials;
+}
+</script>
