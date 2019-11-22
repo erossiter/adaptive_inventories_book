@@ -1,6 +1,6 @@
 <script>
 
-var qtextA = {
+var qtext = {
 1: { "text" : "I have a good word for everyone.", "responses" : { 1 : "Very inaccurate", 2 : "Moderately inaccurate", 3 : "Neither inaccurate nor accurate", 4 : "Moderately accurate", 5 : "Very accurate" } },
 2: { "text" : "I believe that others have good intentions.", "responses" : { 1 : "Very inaccurate", 2 : "Moderately inaccurate", 3 : "Neither inaccurate nor accurate", 4 : "Moderately accurate", 5 : "Very accurate" } },
 3: { "text" : "I respect others.", "responses" : { 1 : "Very inaccurate", 2 : "Moderately inaccurate", 3 : "Neither inaccurate nor accurate", 4 : "Moderately accurate", 5 : "Very accurate" } },
