@@ -8,8 +8,9 @@ Qualtrics.SurveyEngine.addOnReady(function () {
 Qualtrics.SurveyEngine.addOnload(function()
 {
 	console.log('v6.0');
+
 	var domain = "https://catsurv.com";
-    var url = domain + "/ocpu/library/catSurv/R/processAJAX";
+    	var url = domain + "/ocpu/library/catSurv/R/processAJAX";
 
 	var last_item = +Qualtrics.SurveyEngine.getEmbeddedData('last_item');
 	var last_answer = +Qualtrics.SurveyEngine.getEmbeddedData('last_answer');
@@ -71,10 +72,10 @@ Qualtrics.SurveyEngine.addOnReady(function()
 		return;
 	}
 	
-	var next_item_info = qtextA[+Qualtrics.SurveyEngine.getEmbeddedData("next_item")];
+	var next_item_info = qtext[+Qualtrics.SurveyEngine.getEmbeddedData("next_item")];
 	
 	var next_item_text = next_item_info['text'];
-	var questionText = jQuery('.QuestionText')[1];
+	var questionText = jQuery('.QuestionText')[0];
 	questionText.innerHTML = next_item_text;
 	
 	var next_item_resp = next_item_info['responses'];
@@ -100,7 +101,7 @@ Qualtrics.SurveyEngine.addOnUnload(function()
 	if ((+last_item) != -1) {
 		var newCat = JSON.parse(JSON.parse('"' + Qualtrics.SurveyEngine.getEmbeddedData("catObj").replace(/"/g, '\\"') + '"'));
 		newCat['answers'][last_item-1] = last_answer;
-		Qualtrics.SurveyEngine.setEmbeddedData("catObj", JSON.stringify(newCat));
+		Qualtrics.SurveyEngine.setEmbeddedData("catObjA", JSON.stringify(newCat));
 	}
 	
 	if (+Qualtrics.SurveyEngine.getEmbeddedData("next_item") == -1) {
