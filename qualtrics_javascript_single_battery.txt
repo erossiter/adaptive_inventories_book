@@ -101,7 +101,7 @@ Qualtrics.SurveyEngine.addOnUnload(function()
 	if ((+last_item) != -1) {
 		var newCat = JSON.parse(JSON.parse('"' + Qualtrics.SurveyEngine.getEmbeddedData("catObj").replace(/"/g, '\\"') + '"'));
 		newCat['answers'][last_item-1] = last_answer;
-		Qualtrics.SurveyEngine.setEmbeddedData("catObjA", JSON.stringify(newCat));
+		Qualtrics.SurveyEngine.setEmbeddedData("catObj", JSON.stringify(newCat));
 	}
 	
 	if (+Qualtrics.SurveyEngine.getEmbeddedData("next_item") == -1) {
