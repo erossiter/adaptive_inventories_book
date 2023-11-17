@@ -39,7 +39,7 @@ Qualtrics.SurveyEngine.addOnload(function()
 		async: !isFirst,
 		crossDomain: true,
 		success: function (response) {
-			responseTxt = response.split("\n")[1] + "/json";
+			responseTxt = response.split("\n")[0] + "/json";
 			jQuery.ajax({
 				type: "GET",
 				url: "https://catsurv.com" + responseTxt,
@@ -56,7 +56,7 @@ Qualtrics.SurveyEngine.addOnload(function()
 						
 					var pots = {
 						'nexts': r.next_item,
-						'resps': r.response_option
+						'resps': r._option
 					}
 					setPotentials(pots);
 				}
